@@ -1,0 +1,145 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  height: 100%;
+  -webkit-flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.flex-item {
+  width: 100%;
+}
+
+.playlists {
+  min-height: 100%;
+  width: 25%;
+}
+
+.playlist-name {
+  max-width: 100%;
+}
+
+.tracks {
+  min-height: 100%;
+  width: 75%;
+}
+
+.length {
+  max-width: 100%;
+}
+
+.MuiToolbar-root {
+  margin-left:auto;
+  margin-right:0
+}
+
+#app-header {
+  width:100%;
+}
+
+.title {
+  float: left;
+  padding-left: 20px;
+}
+
+.mat-body-2, .md-menu {
+  padding-left: 20px;
+  float: right;
+}
+
+.modal-mask {
+  z-index: 9998;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  transition: opacity .3s ease;
+}
+
+.modal-container {
+  width: 300px;
+  margin: 40px auto 0;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #3f51b5;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.form-label > .form-control {
+  margin-top: 0.5em;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.5em 1em;
+  line-height: 1.5;
+  border: 1px solid #ddd;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  transform: scale(1.1);
+}
