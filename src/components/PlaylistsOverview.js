@@ -31,12 +31,6 @@ export class PlaylistsOverview extends Component {
         date.setSeconds(length)
         return date.toISOString().substr(11, 8)
     }
-    showTracks = (id) => {
-        console.log(id)
-    }
-    executeDelete = (id) => {
-        console.log(id)
-    }
     openDialog = () => {
         this.setState({open: true})
     }
@@ -50,7 +44,7 @@ export class PlaylistsOverview extends Component {
 
     render() {
         return (
-            <div id="playlists-overview" className="modal-header">
+            <div id="playlists-overview">
                 <h3>Playlists</h3>
 
                 <Card className="flex-item">

@@ -14,6 +14,9 @@ export class PlaylistItems extends Component {
             playlistName: ''
         }
     }
+    showTracks = (id) => {
+        this.props.eventBus.dispatch('playlist-selected', id);
+    }
     executeDelete = (id) => {
         this.setState({updatePlaylistModalDialogOpen: false, deletePlaylistModalDialogOpen: true, playlistId: id})
     }

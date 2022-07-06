@@ -14,7 +14,8 @@ export class Spotitube extends React.Component {
         super(props);
         this.state = {
             pass: '',
-            token: ''
+            token: '',
+            playlistId:''
         }
     }
 
