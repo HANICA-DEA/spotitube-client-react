@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Button from '@material-ui/core/Button';
-import {Card, CardContent} from "@material-ui/core";
+import Button from "@mui/material/Button";
+import {Card, CardContent} from "@mui/material";
 
 class Login extends Component {
     constructor(props) {
@@ -41,7 +41,7 @@ class Login extends Component {
                         <div className="form-control">
                                 <label className="form-label">
                                     Server URL
-                                    <input name="serverlocation" id="urlInput" className="form-control" placeholder="Server URL"
+                                    <input name="serverlocation" data-testid="urlInput" className="form-control" placeholder="Server URL"
                                            value={this.state.serverlocation}
                                            pattern="http://[a-zA-Z0-9:/.\-]+"
                                            required
@@ -49,19 +49,19 @@ class Login extends Component {
                                 </label>
                                 <label className="form-label">
                                     User
-                                    <input name="user" id="userInput" placeholder="User" className="form-control"
+                                    <input name="user" data-testid="userInput" placeholder="User" className="form-control"
                                            value={this.state.user}
                                            required
                                            onChange={this.onInputchange} />
                                 </label>
                                 <label className="form-label">
                                     Password
-                                    <input name="pass" id="passInput" type="password" className="form-control" placeholder="Password"
+                                    <input name="pass" data-testid="passInput" type="password" className="form-control" placeholder="Password"
                                            value={this.state.pass}
                                            required
                                            onChange={this.onInputchange}/>
                                 </label>
-                                <Button id="loginButton" variant="contained" color="primary" type={"submit"} onClick={this.onSubmitForm}>Login</Button>
+                                <Button data-testid="loginButton" variant="contained" color="primary" type={"submit"} onClick={this.onSubmitForm}>Login</Button>
                         </div>
                     </CardContent>
                 </Card>

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 
 export class LogoutButton extends Component {
     executeLogout = () => {
         this.props.eventBus.dispatch('logged-out', {})
     }
     render() {
-        return (<Button id="logoutButton" variant="contained" color="secondary" onClick={this.executeLogout}>Logout</Button>);
+        return (<Button id="logoutButton" variant="contained" color="error" onClick={this.executeLogout}>Logout</Button>);
     }
 }

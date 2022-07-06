@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {AppBar, Box, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, Box, Toolbar, Typography} from "@mui/material";
 import {LogoutButton} from "./LogoutButton";
-import {QueueMusic} from "@material-ui/icons";
+import {QueueMusic} from "@mui/icons-material";
 
 export class AppHeader extends Component {
     constructor(props) {

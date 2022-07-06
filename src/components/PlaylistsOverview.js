@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import {Button, Card, CardContent} from "@material-ui/core";
-import {Edit, PlaylistAdd, RemoveCircle} from "@material-ui/icons";
+import {Button, Card, CardContent} from "@mui/material";
+import {PlaylistAdd} from "@mui/icons-material";
+import {PlaylistItems} from "./PlaylistItems";
+import {NewPlaylistModalDialog} from "./NewPlaylistModalDialog";
 
 export class PlaylistsOverview extends Component {
     constructor(props) {
@@ -9,12 +11,16 @@ export class PlaylistsOverview extends Component {
             playlists: [],
             id: '',
             name: '',
-            minutes: ''
+            minutes: '',
+            open: false
         }
     }
 
     componentDidMount() {
         this.props.apiGateway.getPlaylists(localStorage.getItem('token'), this.setPlaylists)
+        this.props.eventBus.on('playlists-updated', (playlistsUpdate) => {
+            this.setPlaylists(playlistsUpdate.playlists, playlistsUpdate.length)
+        })
     }
 
     setPlaylists = (playlists, length) => {
@@ -28,56 +34,41 @@ export class PlaylistsOverview extends Component {
     showTracks = (id) => {
         console.log(id)
     }
-    executeUpdate = (id, name) => {
-        console.log(id + " " + name)
-    }
     executeDelete = (id) => {
         console.log(id)
     }
-    openDialog = (newPlaylist) => {
-        console.log(newPlaylist)
+    openDialog = () => {
+        this.setState({open: true})
+    }
+    handleCancel = () => {
+        this.setState({open: false});
+    }
+    handleAddNewPlaylist = (id, playlistName) => {
+        this.props.apiGateway.addPlaylist(localStorage.getItem('token'), playlistName, this.setPlaylists)
+        this.setState({open: false});
     }
 
     render() {
-        const playlist_items = this.state.playlists.map((playlist, id) =>
-            <li className="flex-item flex-container" id={id}>
-                <a href="/#" onClick={() => {
-                    this.showTracks(playlist.id);
-                }} className="playlist-name">{playlist.name}</a>
-                <Button onClick={() => {
-                    this.executeUpdate(playlist.id, playlist.name)
-                }}>
-                    <Edit></Edit>
-                </Button>
-                <Button onClick={() => {
-                    this.executeDelete(playlist.id)
-                }}>
-                    <RemoveCircle color="secondary"/>
-                </Button>
-            </li>)
         return (
             <div id="playlists-overview" className="modal-header">
                 <h3>Playlists</h3>
 
-                <Card class="flex-item">
+                <Card className="flex-item">
                     <CardContent>
-                        <ul>
-                            {playlist_items}
-                        </ul>
+                        <PlaylistItems playlists={this.state.playlists} apiGateway={this.props.apiGateway} eventBus={this.props.eventBus}/>
                     </CardContent>
                 </Card>
-                <Card class="flex-item">
-                    <CardContent class="flex-container">
+                <Card className="flex-item">
+                    <CardContent className="flex-container">
                     <span className="length">
                     Total length: {this.state.minutes}
                     </span>
-                        <Button onClick={() => {
-                            this.openDialog('newPlaylist')
-                        }} class="add-button" id="openNewPlaylistButton">
+                        <Button onClick={ this.openDialog } className="add-button" id="openNewPlaylistButton">
                             <PlaylistAdd/>
                         </Button>
                     </CardContent>
                 </Card>
+                { this.state.open && <NewPlaylistModalDialog open={this.state.open} handleCancel={this.handleCancel} handleSave={this.handleAddNewPlaylist}/> }
             </div>
         );
     }
